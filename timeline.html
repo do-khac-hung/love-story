@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if (sessionStorage.getItem('naomi_auth') !== 'true') {
+      window.location.replace('login.html');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hành trình tình yêu — dòng thời gian từ những trang nhật ký đầu tiên tháng 7 đến những buổi hẹn hò đáng nhớ tháng 8.">
+  <title>Hành Trình Tình Yêu | Handess ♡ Naomi</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Timeline page extra styles */
+    .big-timeline {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+    }
+
+    .big-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-border));
+      transform: translateX(-50%);
+    }
+
+    .big-tl-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 60px;
+      margin-bottom: 64px;
+      position: relative;
+      align-items: start;
+    }
+
+    .big-tl-item::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 4px solid var(--color-bg);
+      box-shadow: 0 0 0 2px var(--color-primary);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .big-tl-item.right .tl-content { grid-column: 2; grid-row: 1; }
+    .big-tl-item.right .tl-img { grid-column: 1; grid-row: 1; text-align: right; }
+
+    .big-tl-item.left .tl-content { grid-column: 1; grid-row: 1; text-align: right; }
+    .big-tl-item.left .tl-img { grid-column: 2; grid-row: 1; }
+
+    .tl-img img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+    }
+
+    .big-tl-item.right .tl-img img { margin-left: auto; }
+
+    .tl-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+    }
+
+    .tl-entry-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .tl-entry-text {
+      font-size: 14.5px;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .tl-read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+    .tl-read-link:hover { gap: 10px; }
+
+    /* Note cards for July entries */
+    .notes-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .note-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .note-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+    }
+
+    .note-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .note-time {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .note-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .note-title {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .note-preview {
+      font-size: 12.5px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .note-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .big-timeline::before { left: 24px; }
+      .big-tl-item { grid-template-columns: 1fr; padding-left: 48px; }
+      .big-tl-item::before { left: 24px; transform: none; }
+      .big-tl-item.right .tl-content,
+      .big-tl-item.left .tl-content { grid-column: 1; text-align: left; }
+      .big-tl-item.right .tl-img,
+      .big-tl-item.left .tl-img { grid-column: 1; grid-row: 2; }
+      .big-tl-item.right .tl-img img,
+      .big-tl-item.left .tl-img img { margin: 0; }
+      .notes-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .notes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <span class="logo-name">Handess ♡ Naomi</span>
+      <span class="logo-tagline">Nhật ký tình yêu</span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Trang Chủ</a>
+      <a href="timeline.html" class="active">Hành Trình</a>
+      <a href="post-1.html">Câu Chuyện</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect y="3" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="10" width="22" height="2" rx="1" fill="currentColor"/>
+        <rect y="17" width="22" height="2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Trang Chủ</a>
+  <a href="timeline.html">Hành Trình</a>
+  <a href="post-1.html">Câu Chuyện</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="timeline-page-hero">
+  <div class="script-title">Từ tháng 5 đến tháng 10, 2026</div>
+  <h1>Hành Trình<br>Tình Yêu</h1>
+  <p>
+    Từ lần đầu gặp riêng tháng 5, qua bảo tàng quân sự, photo booth Lotte Mall —
+    đến đêm 15/8 anh tỏ tình và em say yes, những ngày mưa tháng 8,
+    và lần đầu nắm tay trên đường đến Bắc Ninh.
+  </p>
+</div>
+
+<!-- BIG TIMELINE -->
+<div class="big-timeline" style="padding-top: 80px;">
+
+  <!-- Item 1 — May 21 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">🌸 21 Tháng 5, 2026</span>
+      <div class="tl-entry-title">Lần Đầu Gặp Riêng</div>
+      <p class="tl-entry-text">
+        Lần đầu tiên anh và em có riêng với nhau — không phải cả nhóm, không phải tình cờ gặp.
+        Một buổi anh không biết sẽ thay đổi mọi thứ từ đó.
+      </p>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/IMG_20260719_235023.jpg" alt="21/5 - Lần đầu gặp riêng" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 2 — May 28 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/20260719_145312.jpg" alt="28/5" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🌿 28 Tháng 5, 2026</span>
+      <div class="tl-entry-title">Một Ngày Tháng 5</div>
+      <p class="tl-entry-text">
+        Những tháng đầu — hai đứa dần quen với sự hiện diện của nhau,
+        và anh bắt đầu nhận ra rằng em quan trọng hơn anh nghĩ.
+      </p>
+    </div>
+  </div>
+
+  <!-- Item 3 — June 28 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">🎬 28 Tháng 6, 2026</span>
+      <div class="tl-entry-title">Muji &amp; Bầy Xác Sống</div>
+      <p class="tl-entry-text">
+        Ăn ở Muji rồi cùng nhau xem phim “Bầy Xác Sống” —
+        một buổi chiều bình thường nhưng anh thấy mọi thứ đang trở nên gần gũi hơn.
+      </p>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/20260726_133021.jpg" alt="28/6 - Muji và bầy xác sống" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 4 — July 19 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/880cf262-b387-46f9-913c-61d322df5853.jfif" alt="19/7 - Selfie đôi tại bảo tàng quân sự bên máy bay" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🏛️ 19 Tháng 7, 2026</span>
+      <div class="tl-entry-title">Bảo Tàng Quân Sự Hà Nội</div>
+      <p class="tl-entry-text">
+        Cùng nhau đi thăm Bảo tàng Quân sự — ảnh bên xe tăng, xe thiết giáp
+        và những hiện vật chiến tranh. Một ngày lang thang thú vị giữa lòng Hà Nội.
+      </p>
+    </div>
+  </div>
+
+  <!-- Item 5 — July 26 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">📸 26 Tháng 7, 2026</span>
+      <div class="tl-entry-title">Thăm Lăng Bác &amp; Photo Booth Lotte Mall</div>
+      <p class="tl-entry-text">
+        Thăm Lăng Bác xong cả đội kéo nhau về Lotte Mall Tây Hồ chụp photo booth —
+        những tấm ảnh vui nhộn và dễ thương nhất của năm 2026.
+      </p>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/a.jpg" alt="26/7 - Photo booth Lotte Mall" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 6 — July 30 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/20260719_145312.jpg" alt="30/7 - Nhật ký đầu tiên" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">📔 30 Tháng 7, 2026</span>
+      <div class="tl-entry-title">Những Trang Nhật Ký Đầu Tiên</div>
+      <p class="tl-entry-text">
+        Buổi chiều 30/7, anh ngồi xuống và bắt đầu viết — 8 trang trong một buổi chiều.
+        Có những điều chỉ có thể nói bằng chữ viết tay, và anh đã viết tất cả về em.
+      </p>
+      <a href="#july-notes" class="tl-read-link">
+        Xem các trang nhật ký
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Item 7 — Aug 15 - Tᳶ TÌNH ★ -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge" style="background: var(--color-primary); color: #fff; box-shadow: 0 2px 12px rgba(201,132,106,0.4);">💗 15 Tháng 8, 2026 — Tᳶ TÌNH</span>
+      <div class="tl-entry-title">Chính Thức Hẹn Hò ★</div>
+      <p class="tl-entry-text">
+        Ngày 15/8, anh tỏ tình. Em say yes. Từ giây phút đó, mọi thứ trở nên khác hẳn —
+        anh không còn là người bạn đi cùng nữa, mà là người em gọi là của mình.
+        Hai đứa gần nhau và chụp ảnh chung, và theme messenger cũng sẽ không còn là màu trắng ngày thường nữa rồi :v
+      </p>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/Messenger_creation_57E09303-7071-48E2-91A5-4BF32DFCF557.jpg" alt="15/8 - Tỏ tình - Chính thức hẹn hò" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 8 — Aug 16 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/IMG_20260719_235023.jpg" alt="16/8 - Ăn phường" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🍽️ 16 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Ăn Phường — Gặp Mặt Mọi Người</div>
+      <p class="tl-entry-text">
+        Bữa ăn phường — anh đến và gặp mặt mọi người lần đầu.
+        Chuyện thường ngày ở xóm, nhưng lần này có em ở đó bên cạnh.
+        Đêm hôm đó anh còn thức đến 2:24 AM viết ghi chú về những gì đã thay đổi.
+      </p>
+    </div>
+  </div>
+
+  <!-- Item 9 — Aug 27 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">✍️ 27 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Ngày Trước Buổi Hẹn — Viết Để Chuẩn Bị</div>
+      <p class="tl-entry-text">
+        Ngày 27/8 — ngày hôm trước buổi hẹn đầu tiên hai đứa. Anh viết xuống mọi thứ
+        anh muốn nói, mọi thứ anh sẽ làm. Vừa hồi hộp vừa mong chờ —
+        còn cẩn thận chuẩn bị quà KRIK cho em.
+      </p>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/20260828_203343.jpg" alt="Chuẩn bị quà tặng KRIK" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 10 — Aug 28 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/17c5af3d-dde9-4450-a0ae-d3cd788fc4fc.jfif" alt="28/8 - Naomi với bó hoa cẩm tú cầu" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🍧 28 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Hẹn Hò Bão Táp — The Manor &amp; Highland</div>
+      <p class="tl-entry-text">
+        Kế hoạch là ăn Gogi + chơi bowling + uống nước. Nhưng HN đổ mưa bất ngờ,
+        ngập ngõ Duy Tân. Anh đặt xe gần 1 tiếng mới đến được em —
+        rồi đổi sang The Manor ăn tối, uống nước ở Highland Handisco.
+        Anh cũng tặng em bộ quà KRIK hôm đó.
+      </p>
+      <a href="post-1.html" class="tl-read-link">
+        Đọc câu chuyện đầy đủ
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Item 11 — Aug 31 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">🤝 31 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Lần Đầu Nắm Tay — Bắc Ninh</div>
+      <p class="tl-entry-text">
+        8h anh đến đón em ở ngõ Thượng, hai đứa đi xe máy qua chỗ Minh chill một lúc,
+        sang Việt Yên uống nước — rồi trên chuyến xe sang Vincom Bắc Ninh,
+        anh mới dám nắm tay em. Xem Spider-Man, đường về có hoàng hôn đẹp.
+      </p>
+      <a href="post-2.html" class="tl-read-link">
+        Đọc câu chuyện đầy đủ
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/Messenger_creation_9E3BF9E6-884C-4552-AE34-90908CFF3440.jpg" alt="31/8 - Lần đầu nắm tay" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 12 — Oct 7 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/20261007_201718.jpg" alt="7/10 - Royal City ăn lẩu" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🍲 7 Tháng 10, 2026</span>
+      <div class="tl-entry-title">Royal City — Gangnam Box Ăn Lẩu</div>
+      <p class="tl-entry-text">
+        Hẹn nhau ở Royal City, ăn lẩu Hàn Quốc ở Gangnam Box —
+        ánh đèn đỏ, thịt nướng thơm lừng, và hai đứa ngồi đối diện
+        như thể cả thế giới chỉ còn lại hai người.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+  <!-- Item 1 — July 30 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">📔 30 Tháng 7, 2026</span>
+      <div class="tl-entry-title">Những Trang Nhật Ký Đầu Tiên</div>
+      <p class="tl-entry-text">
+        Buổi chiều 30/7, anh ngồi xuống và bắt đầu viết — không phải vì có gì đặc biệt xảy ra, 
+        mà vì anh cần phải ghi lại những gì đang cảm thấy. 
+        Tám trang nhật ký trong một buổi chiều. Mỗi trang là một góc nhìn khác nhau về em.
+      </p>
+      <a href="#july-notes" class="tl-read-link">
+        Xem các trang nhật ký
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/20260719_145312.jpg" alt="Naomi tại bảo tàng quân sự tháng 7" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 2 — Aug 16 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/IMG_20260719_235023.jpg" alt="Chụp ảnh bảo tàng quân sự lúc đêm" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🌙 16 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Những Dòng Viết Lúc 2:24 AM</div>
+      <p class="tl-entry-text">
+        Có những điều ban ngày không nói được. Đêm 16/8, anh thức đến 2 giờ sáng — 
+        không phải vì mất ngủ, mà vì có những cảm xúc cần được đặt vào chữ 
+        trước khi chúng trôi mất đi.
+      </p>
+    </div>
+  </div>
+
+  <!-- Item 3 — Aug 27 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">✍️ 27 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Ngày Trước Buổi Hẹn — Viết Để Chuẩn Bị</div>
+      <p class="tl-entry-text">
+        Ngày 27/8 — ngày hôm trước buổi hẹn đầu tiên. Anh viết xuống mọi thứ anh muốn nói, 
+        mọi thứ anh sẽ làm, mọi thứ anh hy vọng. Vừa hồi hộp vừa mong chờ.
+      </p>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/20260828_203343.jpg" alt="Chuẩn bị quà tặng KRIK" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 4 — Aug 28 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/Messenger_creation_1130B1DC-B985-4F92-9E05-5463272DEB76.jpg" alt="Naomi với bó hoa tươi — buổi hẹn đầu tiên" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🎳 28 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Ngày Hẹn Đầu Tiên — Bowling & Cơn Mưa</div>
+      <p class="tl-entry-text">
+        Kế hoạch là bowling. Hà Nội lại có kế hoạch khác — mưa đổ xuống bất chợt, 
+        ngập đường, anh đợi xe gần một tiếng. Nhưng cuối cùng, The Manor và 
+        Highland Coffee lại tạo ra một buổi tối đẹp hơn cả kế hoạch ban đầu.
+      </p>
+      <a href="post-1.html" class="tl-read-link">
+        Đọc câu chuyện đầy đủ
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Item 5 — Aug 31 -->
+  <div class="big-tl-item left fade-in">
+    <div class="tl-content">
+      <span class="tl-date-badge">🤝 31 Tháng 8, 2026</span>
+      <div class="tl-entry-title">Lần Đầu Nắm Tay — Bắc Ninh</div>
+      <p class="tl-entry-text">
+        8 giờ sáng anh đến đón em. Chuyến đi xe máy, rồi sang Vincom Bắc Ninh. 
+        Trên đường đi, trong một khoảnh khắc, anh khẽ chìa tay sang — 
+        và em đặt tay vào. Spider-Man, một kiểu ảnh đẹp, và một buổi tối 
+        anh sẽ không bao giờ quên.
+      </p>
+      <a href="post-2.html" class="tl-read-link">
+        Đọc câu chuyện đầy đủ
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="tl-img">
+      <img src="images/my_img/5fc39645-04e8-4a39-8fbf-ee2d58a68245.jfif" alt="31/8 - Hoàng hôn trên xe máy đường về Bắc Ninh" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Item 12 — Oct 7 -->
+  <div class="big-tl-item right fade-in">
+    <div class="tl-img">
+      <img src="images/my_img/20261007_201718.jpg" alt="7/10 - Royal City ăn lẩu" loading="lazy">
+    </div>
+    <div class="tl-content">
+      <span class="tl-date-badge">🍲 7 Tháng 10, 2026</span>
+      <div class="tl-entry-title">Royal City — Gangnam Box Ăn Lẩu</div>
+      <p class="tl-entry-text">
+        Hẹn nhau ở Royal City, ăn lẩu Hàn Quốc ở Gangnam Box —
+        ánh đèn đỏ, thịt nướng thơm lừng, và hai đứa ngồi đối diện
+        như thể cả thế giới chỉ còn lại hai người.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- JULY NOTES SECTION -->
+<section id="july-notes" style="background: var(--color-surface); padding: 64px 0;">
+  <div class="notes-section">
+    <div class="section-header">
+      <h2 class="section-title">Nhật Ký <span>30/7</span></h2>
+      <span style="font-family: var(--font-script); font-size: 1.2rem; color: var(--color-primary);">8 trang viết tay</span>
+    </div>
+
+    <p style="color: var(--color-text-muted); margin-bottom: 32px; max-width: 560px; font-size: 15px; line-height: 1.7;">
+      Những trang nhật ký viết tay — lưu giữ bằng Samsung Notes. Nội dung là chữ viết tay 
+      chưa được chuyển sang văn bản. Dưới đây là những ghi chú về từng trang theo thời gian ghi.
+    </p>
+
+    <div class="notes-grid">
+      <div class="note-card">
+        <span class="note-icon">📝</span>
+        <div class="note-time">15:27 · 30/7/2026</div>
+        <div class="note-title">Trang 1 — Ghi chú đầu tiên</div>
+        <p class="note-preview">Trang nhật ký đầu tiên của buổi chiều 30/7. Những suy nghĩ khi mới bắt đầu viết về em.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card">
+        <span class="note-icon">💭</span>
+        <div class="note-time">15:38 · 30/7/2026</div>
+        <div class="note-title">Trang 2 — Cảm xúc thứ hai</div>
+        <p class="note-preview">Tiếp nối cảm xúc — những điều anh muốn nói nhưng chưa biết cách nói.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card">
+        <span class="note-icon">✨</span>
+        <div class="note-time">15:50 · 30/7/2026</div>
+        <div class="note-title">Trang 3 — Khoảnh khắc</div>
+        <p class="note-preview">Ghi lại một khoảnh khắc cụ thể — một kỷ niệm anh không muốn quên.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card">
+        <span class="note-icon">🌸</span>
+        <div class="note-time">16:02 · 30/7/2026</div>
+        <div class="note-title">Trang 4 — Những điều em không biết</div>
+        <p class="note-preview">Những suy nghĩ anh chưa dám nói thành lời, chỉ dám viết xuống giấy.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card">
+        <span class="note-icon">💫</span>
+        <div class="note-time">16:06 · 30/7/2026</div>
+        <div class="note-title">Trang 5 — Mong muốn</div>
+        <p class="note-preview">Những điều anh hy vọng sẽ xảy ra — những kế hoạch còn chưa thành hình.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card">
+        <span class="note-icon">🎯</span>
+        <div class="note-time">16:11 · 30/7/2026</div>
+        <div class="note-title">Trang 6 — Quyết tâm</div>
+        <p class="note-preview">Sau nhiều trang suy nghĩ, đến trang này anh bắt đầu có quyết tâm rõ ràng hơn.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card" style="grid-column: span 1;">
+        <span class="note-icon">🌙</span>
+        <div class="note-time">16:28 · 30/7/2026</div>
+        <div class="note-title">Trang 7 — Cuối buổi chiều</div>
+        <p class="note-preview">Khi bóng chiều dần tắt, anh vẫn còn viết — trang dài nhất và nhiều cảm xúc nhất.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+
+      <div class="note-card" style="grid-column: span 1;">
+        <span class="note-icon">❤️</span>
+        <div class="note-time">16:28 · 30/7/2026</div>
+        <div class="note-title">Trang 8 — Kết thúc & Bắt đầu</div>
+        <p class="note-preview">Trang cuối cùng của buổi chiều — và cũng là trang bắt đầu của một chương mới.</p>
+        <span class="note-badge">Viết tay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<section style="text-align: center; padding: 80px 24px; background: linear-gradient(135deg, var(--color-primary-light), #fff);">
+  <div style="max-width: 600px; margin: 0 auto;">
+    <span style="font-family: var(--font-script); font-size: 4rem; color: var(--color-primary); opacity: 0.4; line-height: 1; display: block; margin-bottom: -20px;">❝</span>
+    <blockquote style="font-family: var(--font-serif); font-size: clamp(1.3rem, 3vw, 1.9rem); font-style: italic; color: var(--color-text); line-height: 1.5; margin-bottom: 24px;">
+      Tình yêu không bắt đầu bằng những điều to lớn — 
+      nó bắt đầu từ những trang giấy nhỏ viết lúc chiều muộn, 
+      từ một cơn mưa bất chợt, từ một bàn tay khẽ chìa ra.
+    </blockquote>
+    <div style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-muted);">
+      — Nhật ký tình yêu, tháng 8 năm 2026
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><span class="logo-name">Handess ♡ Naomi</span></div>
+      <p class="footer-tagline">Nhật ký về những khoảnh khắc nhỏ bé mà anh sợ sẽ quên.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Câu Chuyện</div>
+      <div class="footer-links">
+        <a href="post-1.html">28/8 — Buổi Hẹn Đầu Tiên</a>
+        <a href="post-2.html">31/8 — Lần Đầu Nắm Tay</a>
+        <a href="timeline.html">Hành Trình Tình Yêu</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Khám Phá</div>
+      <div class="footer-links">
+        <a href="index.html">Trang Chủ</a>
+        <a href="timeline.html">Dòng Thời Gian</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Nhật Ký Tình Yêu</span>
+    <span>Làm với <span class="heart">❤️</span> bởi Anh</span>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

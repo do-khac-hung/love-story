@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handess ♡ Naomi — Private</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #c9846a;
+      --primary-dark: #a9654d;
+      --bg: #0d0a09;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #f0ebe6;
+      --text-muted: rgba(240,235,230,0.45);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Animated background ── */
+    .bg-wrap {
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,132,106,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 90%, rgba(180,100,80,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(100,50,40,0.1) 0%, transparent 70%);
+    }
+
+    /* Floating hearts */
+    .hearts {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      opacity: 0;
+      animation: floatHeart linear infinite;
+      color: rgba(201,132,106,0.25);
+      font-size: 18px;
+      user-select: none;
+    }
+    @keyframes floatHeart {
+      0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-110vh) rotate(30deg) scale(0.6); opacity: 0; }
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative; z-index: 1;
+      width: min(420px, 92vw);
+      background: rgba(15, 10, 8, 0.75);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(201,132,106,0.2);
+      border-radius: 24px;
+      padding: 56px 48px 48px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 32px 80px rgba(0,0,0,0.7),
+        0 0 120px rgba(201,132,106,0.06);
+      animation: cardIn 0.8s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(32px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    }
+
+    /* Lock icon */
+    .lock-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .lock-circle {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(201,132,106,0.2), rgba(201,132,106,0.06));
+      border: 1px solid rgba(201,132,106,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+    }
+
+    /* Title */
+    .logo {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    /* Input */
+    .field {
+      margin-bottom: 18px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .input-wrap {
+      position: relative;
+    }
+    .input-wrap input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 48px 14px 18px;
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      -webkit-text-security: disc; /* hide chars visually like password */
+    }
+    .input-wrap input[type="password"] {
+      letter-spacing: 0.4em;
+    }
+    .input-wrap input:focus {
+      border-color: rgba(201,132,106,0.5);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 0 0 3px rgba(201,132,106,0.12);
+    }
+    .input-wrap input.shake {
+      animation: shake 0.5s ease;
+      border-color: rgba(255,100,100,0.5);
+      box-shadow: 0 0 0 3px rgba(255,80,80,0.1);
+    }
+    @keyframes shake {
+      0%,100%{ transform:translateX(0); }
+      20%    { transform:translateX(-8px); }
+      40%    { transform:translateX(8px); }
+      60%    { transform:translateX(-5px); }
+      80%    { transform:translateX(5px); }
+    }
+    .toggle-eye {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); font-size: 18px;
+      transition: color 0.2s;
+      line-height: 1;
+      padding: 4px;
+    }
+    .toggle-eye:hover { color: var(--primary); }
+
+    /* Error message */
+    .error-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: #ff7070;
+      margin-top: 10px;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .error-msg.show { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Button */
+    .btn {
+      width: 100%;
+      margin-top: 28px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c9846a, #a9654d);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+      box-shadow: 0 4px 20px rgba(201,132,106,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(201,132,106,0.45); }
+    .btn:hover::after { opacity: 1; }
+    .btn:active { transform: translateY(0); }
+
+    /* Footer hint */
+    .hint {
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(240,235,230,0.2);
+      margin-top: 32px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Success overlay ── */
+    .success-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #0d0a09;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .success-overlay.show { opacity: 1; pointer-events: all; }
+    .success-icon { font-size: 64px; margin-bottom: 20px; animation: pulse 1s ease infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+    .success-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    .success-sub { color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; }
+
+    @media (max-width: 480px) {
+      .card { padding: 40px 28px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="bg-wrap"></div>
+<div class="hearts" id="hearts"></div>
+
+<!-- Success overlay -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">💗</div>
+  <div class="success-text">Handess ♡ Naomi</div>
+  <div class="success-sub">Đang mở nhật ký…</div>
+</div>
+
+<!-- Login card -->
+<div class="card" id="card">
+
+  <div class="lock-wrap">
+    <div class="lock-circle">🔐</div>
+  </div>
+
+  <div class="logo">Handess ♡ Naomi</div>
+  <div class="subtitle">Nhật Ký Riêng Tư</div>
+
+  <form id="loginForm" autocomplete="off">
+    <div class="field">
+      <label>Mật khẩu</label>
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="pwInput"
+          placeholder="• • • • • •"
+          maxlength="10"
+          autofocus
+          inputmode="numeric"
+        >
+        <button type="button" class="toggle-eye" id="eyeBtn" title="Hiện/ẩn mật khẩu">
+          👁
+        </button>
+      </div>
+      <div class="error-msg" id="errorMsg">
+        Mật khẩu không đúng. Thử lại nhé 🙈
+      </div>
+    </div>
+
+    <button type="submit" class="btn" id="submitBtn">
+      Mở Nhật Ký →
+    </button>
+  </form>
+
+  <div class="hint">Trang này chỉ dành cho hai đứa mình 💌</div>
+</div>
+
+<script>
+  // ── Floating hearts ──
+  const heartsEl = document.getElementById('hearts');
+  const heartChars = ['♡', '♥', '❤', '💕', '✦'];
+  for (let i = 0; i < 22; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart';
+    h.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = (8 + Math.random() * 14) + 's';
+    h.style.animationDelay = (Math.random() * 12) + 's';
+    h.style.fontSize = (12 + Math.random() * 18) + 'px';
+    heartsEl.appendChild(h);
+  }
+
+  // ── Toggle eye ──
+  const pwInput = document.getElementById('pwInput');
+  const eyeBtn  = document.getElementById('eyeBtn');
+  eyeBtn.addEventListener('click', () => {
+    const isPassword = pwInput.type === 'password';
+    pwInput.type = isPassword ? 'text' : 'password';
+    eyeBtn.textContent = isPassword ? '🙈' : '👁';
+  });
+
+  // ── Login ──
+  const CORRECT = '260101';
+  const form     = document.getElementById('loginForm');
+  const errorMsg = document.getElementById('errorMsg');
+  const overlay  = document.getElementById('successOverlay');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = pwInput.value.trim();
+
+    if (val === CORRECT) {
+      // Store auth in sessionStorage
+      sessionStorage.setItem('naomi_auth', 'true');
+
+      // Show success animation
+      overlay.classList.add('show');
+
+      // Redirect after short delay
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1600);
+
+    } else {
+      // Wrong password
+      errorMsg.classList.add('show');
+      pwInput.classList.add('shake');
+      pwInput.value = '';
+
+      setTimeout(() => {
+        pwInput.classList.remove('shake');
+      }, 600);
+
+      setTimeout(() => {
+        errorMsg.classList.remove('show');
+      }, 3000);
+    }
+  });
+
+  // Allow pressing Enter
+  pwInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') form.dispatchEvent(new Event('submit'));
+  });
+
+  // If already logged in, skip straight to home
+  if (sessionStorage.getItem('naomi_auth') === 'true') {
+    window.location.replace('index.html');
+  }
+</script>
+</body>
+</html>
