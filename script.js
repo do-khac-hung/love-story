@@ -71,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroTitles = [
     {
       title: 'Lần Đầu Nắm Tay —<br><em>Một Buổi Chiều Ở Bắc Ninh</em>',
-      excerpt: '8 giờ sáng, anh đến đón em. Chuyến đi ấy có mưa, có tiếng cười, và có một khoảnh khắc anh nhẹ nhàng chìa tay ra — em đã đặt tay vào...',
+      excerpt: '8 giờ sáng, anh đến đón em. Chuyến đi ấy là 1 hôm thời tiết mát mẻ, có tiếng cười, và có một khoảnh khắc anh nhẹ nhàng chìa tay ra — em đã đặt tay vào...',
       category: 'Khoảnh Khắc',
       date: '31 tháng 8, 2026',
       link: 'post-2.html'
     },
     {
-      title: 'Cú Bowling Đầu Tiên —<br><em>& Cơn Mưa Hà Nội</em>',
-      excerpt: 'Hà Nội bất ngờ đổ mưa. Anh đặt xe, đợi gần một tiếng mới đến chỗ em. Kế hoạch thay đổi — nhưng tối hôm đó lại là tối đẹp nhất...',
+      title: 'Ngày hẹn hò bão táp —<br><em>& Cơn Mưa Hà Nội</em>',
+      excerpt: 'Hà Nội bất ngờ đổ mưa. Anh dắt xe, đợi gần một tiếng mới đến chỗ em. Kế hoạch thay đổi — nhưng tối hôm đó lại là tối đẹp nhất...',
       category: 'Hẹn Hò',
       date: '28 tháng 8, 2026',
       link: 'post-1.html'
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===================== LOVE SYSTEM (Home page) =====================
-  window.toggleLove = function(btnId, countId) {
+  window.toggleLove = function (btnId, countId) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
 
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.post-love').forEach(btn => {
     if (btn.onclick) return; // Already handled
 
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       const heart = this.querySelector('.heart');
       const countEl = this.querySelector('span:last-child');
       this.classList.toggle('active');
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===================== SINGLE POST LOVE BUTTON =====================
-  window.toggleLovePost = function(btnId, countId) {
+  window.toggleLovePost = function (btnId, countId) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
 
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  window.toggleLoveMain = function(btnId) {
+  window.toggleLoveMain = function (btnId) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
 
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===================== TAG CLICK =====================
   document.querySelectorAll('.tag').forEach(tag => {
-    tag.addEventListener('click', function() {
+    tag.addEventListener('click', function () {
       this.style.transform = 'scale(0.92)';
       setTimeout(() => { this.style.transform = ''; }, 150);
     });

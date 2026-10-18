@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <script>
@@ -9,431 +10,450 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nhật ký tình yêu — Những khoảnh khắc ngọt ngào được ghi lại theo từng ngày, từ cú bowling đầu tiên đến lần nắm tay giữa màn mưa.">
+  <meta name="description"
+    content="Nhật ký tình yêu — Những khoảnh khắc ngọt ngào được ghi lại theo từng ngày, từ Ngày hẹn hò bão táp đến lần nắm tay giữa màn mưa.">
   <title>Naomi & Anh — Nhật Ký Tình Yêu</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
+
 <body>
 
-<!-- ========== READING PROGRESS ========== -->
-<div class="reading-progress" id="readingProgress"></div>
+  <!-- ========== READING PROGRESS ========== -->
+  <div class="reading-progress" id="readingProgress"></div>
 
-<!-- ========== HEADER ========== -->
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a href="index.html" class="site-logo">
-      <span class="logo-name">Handess ♡ Naomi</span>
-      <span class="logo-tagline">Nhật ký tình yêu</span>
-    </a>
-
-    <nav class="site-nav">
-      <a href="index.html" class="active">Trang Chủ</a>
-      <a href="timeline.html">Hành Trình</a>
-      <a href="post-1.html">Câu Chuyện</a>
-      <a href="#gallery">Kỷ Niệm</a>
-    </nav>
-
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect y="3" width="22" height="2" rx="1" fill="currentColor"/>
-        <rect y="10" width="22" height="2" rx="1" fill="currentColor"/>
-        <rect y="17" width="22" height="2" rx="1" fill="currentColor"/>
-      </svg>
-    </button>
-  </div>
-</header>
-
-<!-- ========== MOBILE NAV ========== -->
-<nav class="mobile-nav" id="mobileNav">
-  <a href="index.html">Trang Chủ</a>
-  <a href="timeline.html">Hành Trình</a>
-  <a href="post-1.html">Câu Chuyện</a>
-  <a href="#gallery">Kỷ Niệm</a>
-</nav>
-
-<!-- ========== HERO / FEATURED POST ========== -->
-<section class="hero-section" id="hero">
-  <div class="hero-bg" id="heroBg" style="background-image: url('images/my_img/Messenger_creation_57E09303-7071-48E2-91A5-4BF32DFCF557.jpg');"></div>
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <span class="hero-category">
-      <span class="dot"></span>
-      Câu Chuyện Nổi Bật
-    </span>
-
-    <h1 class="hero-title">
-      Lần Đầu Nắm Tay —<br>
-      <em>Một Buổi Chiều Ở Bắc Ninh</em>
-    </h1>
-
-    <div class="hero-meta">
-      <span class="author">Anh viết</span>
-      <span class="separator">·</span>
-      <span>31 tháng 8, 2026</span>
-      <span class="separator">·</span>
-      <span>5 phút đọc</span>
-    </div>
-
-    <p class="hero-excerpt">
-      8 giờ sáng, anh đến đón em. Chuyến đi ấy có mưa, có tiếng cười, 
-      và có một khoảnh khắc anh nhẹ nhàng chìa tay ra — em đã đặt tay vào...
-    </p>
-
-    <a href="post-2.html" class="btn-read" id="heroReadBtn">
-      Đọc Câu Chuyện
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </div>
-
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Cuộn</span>
-  </div>
-
-  <!-- Slider dots for featured posts -->
-  <div class="hero-slider-dots">
-    <button class="slider-dot active" data-slide="0"></button>
-    <button class="slider-dot" data-slide="1"></button>
-  </div>
-</section>
-
-<!-- ========== MAIN CONTENT ========== -->
-<div class="main-wrap">
-  <!-- ===== PRIMARY CONTENT ===== -->
-  <main>
-    <!-- Section header -->
-    <div class="section-header">
-      <h2 class="section-title">Những Ngày Đáng <span>Nhớ</span></h2>
-      <a href="timeline.html" class="section-link">
-        Xem tất cả
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-
-    <!-- Post 1 -->
-    <article class="post-card fade-in" id="post-card-1">
-      <div class="post-thumb">
-        <img src="images/my_img/Messenger_creation_1130B1DC-B985-4F92-9E05-5463272DEB76.jpg" alt="Buổi hẹn hò đầu tiên - Tặng hoa và cơn mưa Hà Nội" loading="lazy">
-      </div>
-      <div class="post-body">
-        <span class="post-category">Hẹn Hò</span>
-        <h2 class="post-title">
-          <a href="post-1.html">28/8 — Cú Bowling Đầu Tiên & Cơn Mưa Hà Nội</a>
-        </h2>
-        <p class="post-excerpt">
-          Hà Nội bất ngờ đổ mưa to. Anh đặt xe, đợi gần một tiếng mới đến chỗ em. 
-          Kế hoạch ban đầu thay đổi vì trời mưa — nhưng cuối cùng lại tìm được chỗ 
-          ấm áp hơn cả dự định: nhà hàng The Manor, rồi Highland Coffee bên ô cửa sổ mờ hơi nước.
-        </p>
-        <div class="post-meta">
-          <span class="author">Anh viết</span>
-          <span class="separator">·</span>
-          <span>28 tháng 8, 2026</span>
-          <span class="separator">·</span>
-          <span>4 phút đọc</span>
-          <button class="post-love" id="love-post1" onclick="toggleLove('love-post1', 'count-post1')">
-            <span class="heart">🤍</span>
-            <span id="count-post1">24</span>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- Post 2 -->
-    <article class="post-card fade-in" id="post-card-2">
-      <div class="post-thumb">
-        <img src="images/my_img/Messenger_creation_9E3BF9E6-884C-4552-AE34-90908CFF3440.jpg" alt="Lần đầu nắm tay - Chuyến đi Bắc Ninh" loading="lazy">
-      </div>
-      <div class="post-body">
-        <span class="post-category">Khoảnh Khắc</span>
-        <h2 class="post-title">
-          <a href="post-2.html">31/8 — Lần Đầu Nắm Tay Trên Đường Đến Bắc Ninh</a>
-        </h2>
-        <p class="post-excerpt">
-          Buổi sáng anh đến đón em. Cả hai đi xe máy, gió thổi nhẹ, 
-          lòng anh đã có ý định từ trước. Rồi khoảnh khắc ấy đến — 
-          trên con đường đến Vincom Bắc Ninh, anh khẽ chìa tay ra...
-          và em đã nắm lấy.
-        </p>
-        <div class="post-meta">
-          <span class="author">Anh viết</span>
-          <span class="separator">·</span>
-          <span>31 tháng 8, 2026</span>
-          <span class="separator">·</span>
-          <span>5 phút đọc</span>
-          <button class="post-love" id="love-post2" onclick="toggleLove('love-post2', 'count-post2')">
-            <span class="heart">🤍</span>
-            <span id="count-post2">37</span>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- Divider with script text -->
-    <div style="text-align:center; margin: 48px 0 40px; opacity: 0.5;">
-      <span style="font-family: var(--font-script); font-size: 1.8rem; color: var(--color-primary);">
-        — Những Ký Ức Khác —
-      </span>
-    </div>
-
-    <!-- Grid posts (older entries - handwritten notes) -->
-    <div class="section-header">
-      <h2 class="section-title">Nhật Ký <span>Tháng 7</span></h2>
-    </div>
-
-    <div class="posts-grid">
-      <article class="post-card-v fade-in">
-        <div class="post-thumb">
-          <img src="images/my_img/20260719_145312.jpg" alt="Kỷ niệm tháng 7 - Bảo tàng quân sự" loading="lazy">
-        </div>
-        <div class="post-body">
-          <span class="post-category">Tháng 7</span>
-          <h3 class="post-title">
-            <a href="timeline.html">30/7 — Những Trang Ghi Chú Đầu Tiên</a>
-          </h3>
-          <p class="post-excerpt" style="font-size: 13.5px;">
-            Tám trang nhật ký viết tay trong một buổi chiều — mỗi trang là một cảm xúc khác nhau khi nghĩ về em.
-          </p>
-          <div class="post-meta" style="margin-top: auto;">
-            <span>30 tháng 7, 2026</span>
-            <button class="post-love" onclick="toggleLove(this)">
-              <span class="heart">🤍</span>
-              <span>12</span>
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <article class="post-card-v fade-in">
-        <div class="post-thumb">
-          <img src="images/my_img/20260828_203343.jpg" alt="Tháng 8 - Món quà KRIK" loading="lazy">
-        </div>
-        <div class="post-body">
-          <span class="post-category">Tháng 8</span>
-          <h3 class="post-title">
-            <a href="timeline.html">16/8 & 27/8 — Giữa Hai Buổi Hẹn</a>
-          </h3>
-          <p class="post-excerpt" style="font-size: 13.5px;">
-            Những ngày giữa các buổi hẹn hò — anh viết xuống cảm giác 
-            mong chờ, nhớ nhung và những điều muốn nói với em.
-          </p>
-          <div class="post-meta" style="margin-top: auto;">
-            <span>16 – 27 tháng 8, 2026</span>
-            <button class="post-love" onclick="toggleLove(this)">
-              <span class="heart">🤍</span>
-              <span>19</span>
-            </button>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- Timeline preview -->
-    <div class="section-header" style="margin-top: 56px;">
-      <h2 class="section-title">Hành Trình <span>Yêu</span></h2>
-      <a href="timeline.html" class="section-link">
-        Đọc thêm
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item" data-animate>
-        <div class="timeline-date">21 Tháng 5, 2026</div>
-        <div class="timeline-title">Lần Đầu Gặp Riêng</div>
-        <div class="timeline-text">Lần đầu tiên chỉ có hai đứa — anh không biết hôm đó sẽ là khởi đầu của tất cả.</div>
-      </div>
-
-      <div class="timeline-item" data-animate>
-        <div class="timeline-date">15 Tháng 8, 2026</div>
-        <div class="timeline-title">Tỏ Tình 💗 — Chính Thức Hẹn Hò</div>
-        <div class="timeline-text">Ngày anh tỏ tình và em say yes. Từ hôm đó, mọi thứ không còn như cũ nữa.</div>
-      </div>
-
-      <div class="timeline-item" data-animate>
-        <div class="timeline-date">28 Tháng 8, 2026</div>
-        <div class="timeline-title">Hẹn Hò Bão Táp — The Manor &amp; Highland</div>
-        <div class="timeline-text">Hà Nội đổ mưa, kế hoạch đổ bể — nhưng The Manor và Highland Handisco lại tạo ra buổi tối không thể quên.</div>
-      </div>
-
-      <div class="timeline-item" data-animate>
-        <div class="timeline-date">31 Tháng 8, 2026</div>
-        <div class="timeline-title">Lần Đầu Nắm Tay — Spider-Man Ở Bắc Ninh</div>
-        <div class="timeline-text">Chuyến đi Vincom Bắc Ninh, xem Spider-Man — và lần đầu tiên anh dám chìa tay ra. Em đã nắm lấy.</div>
-      </div>
-
-      <div class="timeline-item" data-animate>
-        <div class="timeline-date">7 Tháng 10, 2026</div>
-        <div class="timeline-title">Royal City — Gangnam Box Ăn Lẩu</div>
-        <div class="timeline-text">Hẹn ở Royal City, ăn lẩu Hàn Quốc ở Gangnam Box — ánh đèn đỏ, hai đứa ngồi đối diện nhau.</div>
-      </div>
-    </div>
-
-    <!-- Photo Gallery Section -->
-    <div id="gallery" style="margin-top: 56px;">
-      <div class="section-header">
-        <h2 class="section-title">Kỷ Niệm <span>Ảnh Chụp</span></h2>
-      </div>
-      <div class="photo-gallery">
-        <div class="gallery-item gallery-featured">
-          <img src="images/my_img/5fc39645-04e8-4a39-8fbf-ee2d58a68245.jfif" alt="Hoàng hôn trên xe máy — đường về 31/8" loading="lazy">
-          <div class="gallery-overlay"><span>Hoàng hôn đường về Bắc Ninh 🌅</span></div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/my_img/17c5af3d-dde9-4450-a0ae-d3cd788fc4fc.jfif" alt="Naomi với bó hoa cẩm tú cầu" loading="lazy">
-          <div class="gallery-overlay"><span>28/8 — Bó hoa đầu tiên 💐</span></div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/my_img/880cf262-b387-46f9-913c-61d322df5853.jfif" alt="Selfie đôi tại bảo tàng quân sự" loading="lazy">
-          <div class="gallery-overlay"><span>19/7 — Bảo tàng Quân sự ✈️</span></div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/my_img/ec1717a0-f946-49b1-9149-aab484b470da.jfif" alt="Selfie đôi ngoài trời Bắc Ninh" loading="lazy">
-          <div class="gallery-overlay"><span>31/8 — Chill ở quê 🌿</span></div>
-        </div>
-        <div class="gallery-item">
-          <img src="images/my_img/20261007_201718.jpg" alt="Gangnam Box 7/10" loading="lazy">
-          <div class="gallery-overlay"><span>7/10 — Royal City 🍲</span></div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar">
-
-    <!-- About widget -->
-    <div class="widget widget-about fade-in">
-      <div class="widget-title">Về Blog Này</div>
-      <div class="about-avatar"><img src="images/my_img/Messenger_creation_57E09303-7071-48E2-91A5-4BF32DFCF557.jpg" alt="Ảnh đôi" style="width:100%;height:100%;object-fit:cover;"></div>
-      <div class="about-name">Nhật Ký Tình Yêu</div>
-      <p class="about-bio">
-        Đây là nơi anh lưu giữ những khoảnh khắc với em — từ buổi hẹn đầu tiên, 
-        những cơn mưa bất chợt, đến từng lần nắm tay. 
-        Mỗi bài viết là một ký ức không muốn quên.
-      </p>
-    </div>
-
-    <!-- Love counter widget -->
-    <div class="widget fade-in">
-      <div class="widget-title">Tình Yêu</div>
-      <div class="love-counter">
-        <span class="big-heart">💕</span>
-        <div class="count-num" id="dayCounter">0</div>
-        <div class="count-label">Ngày Bên Nhau</div>
-      </div>
-    </div>
-
-    <!-- Recent posts widget -->
-    <div class="widget fade-in">
-      <div class="widget-title">Bài Gần Đây</div>
-
-      <div class="widget-post-item">
-        <div class="widget-post-thumb">
-          <img src="images/my_img/Messenger_creation_9E3BF9E6-884C-4552-AE34-90908CFF3440.jpg" alt="" loading="lazy">
-        </div>
-        <div class="widget-post-info">
-          <div class="widget-post-title">
-            <a href="post-2.html">Lần Đầu Nắm Tay Trên Đường Đến Bắc Ninh</a>
-          </div>
-          <div class="widget-post-date">31 tháng 8, 2026</div>
-        </div>
-      </div>
-
-      <div class="widget-post-item">
-        <div class="widget-post-thumb">
-          <img src="images/my_img/Messenger_creation_1130B1DC-B985-4F92-9E05-5463272DEB76.jpg" alt="" loading="lazy">
-        </div>
-        <div class="widget-post-info">
-          <div class="widget-post-title">
-            <a href="post-1.html">Cú Bowling Đầu Tiên & Cơn Mưa Hà Nội</a>
-          </div>
-          <div class="widget-post-date">28 tháng 8, 2026</div>
-        </div>
-      </div>
-
-      <div class="widget-post-item">
-        <div class="widget-post-thumb">
-          <img src="images/my_img/20260719_145027.jpg" alt="" loading="lazy">
-        </div>
-        <div class="widget-post-info">
-          <div class="widget-post-title">
-            <a href="timeline.html">Những Trang Nhật Ký 30/7</a>
-          </div>
-          <div class="widget-post-date">30 tháng 7, 2026</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tags widget -->
-    <div class="widget fade-in">
-      <div class="widget-title">Chủ Đề</div>
-      <div class="tags-cloud">
-        <span class="tag">Hẹn Hò 💑</span>
-        <span class="tag">Hà Nội</span>
-        <span class="tag">Bắc Ninh</span>
-        <span class="tag">Kỷ Niệm</span>
-        <span class="tag">Bowling 🎳</span>
-        <span class="tag">Cà Phê ☕</span>
-        <span class="tag">Spider-Man 🕷️</span>
-        <span class="tag">Mưa 🌧️</span>
-        <span class="tag">Nắm Tay 🤝</span>
-      </div>
-    </div>
-
-  </aside>
-</div>
-
-<!-- ========== FOOTER ========== -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo">
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">
         <span class="logo-name">Handess ♡ Naomi</span>
+        <span class="logo-tagline">Nhật ký tình yêu</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="active">Trang Chủ</a>
+        <a href="timeline.html">Hành Trình</a>
+        <a href="post-1.html">Câu Chuyện</a>
+        <a href="#gallery">Kỷ Niệm</a>
+      </nav>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect y="3" width="22" height="2" rx="1" fill="currentColor" />
+          <rect y="10" width="22" height="2" rx="1" fill="currentColor" />
+          <rect y="17" width="22" height="2" rx="1" fill="currentColor" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== MOBILE NAV ========== -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Trang Chủ</a>
+    <a href="timeline.html">Hành Trình</a>
+    <a href="post-1.html">Câu Chuyện</a>
+    <a href="#gallery">Kỷ Niệm</a>
+  </nav>
+
+  <!-- ========== HERO / FEATURED POST ========== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg" id="heroBg"
+      style="background-image: url('images/my_img/Messenger_creation_57E09303-7071-48E2-91A5-4BF32DFCF557.jpg');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <span class="hero-category">
+        <span class="dot"></span>
+        Câu Chuyện Nổi Bật
+      </span>
+
+      <h1 class="hero-title">
+        Lần Đầu Nắm Tay —<br>
+        <em>Một Buổi Chiều Ở Bắc Ninh</em>
+      </h1>
+
+      <div class="hero-meta">
+        <span class="author">Khắc Hùng</span>
+        <span class="separator">·</span>
+        <span>31 tháng 8, 2026</span>
+        <span class="separator">·</span>
+        <span>5 phút đọc</span>
       </div>
-      <p class="footer-tagline">
-        Nhật ký về những khoảnh khắc nhỏ bé<br>
-        mà anh sợ sẽ quên mất một ngày nào đó.
+
+      <p class="hero-excerpt">
+        8 giờ sáng, anh đến đón em. Chuyến đi ấy có mưa, có tiếng cười,
+        và có một khoảnh khắc anh nhẹ nhàng chìa tay ra — em đã đặt tay vào...
       </p>
+
+      <a href="post-2.html" class="btn-read" id="heroReadBtn">
+        Đọc Câu Chuyện
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
     </div>
 
-    <div>
-      <div class="footer-heading">Câu Chuyện</div>
-      <div class="footer-links">
-        <a href="post-1.html">28/8 — Buổi Hẹn Đầu Tiên</a>
-        <a href="post-2.html">31/8 — Lần Đầu Nắm Tay</a>
-        <a href="timeline.html">Hành Trình Tình Yêu</a>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Cuộn</span>
+    </div>
+
+    <!-- Slider dots for featured posts -->
+    <div class="hero-slider-dots">
+      <button class="slider-dot active" data-slide="0"></button>
+      <button class="slider-dot" data-slide="1"></button>
+    </div>
+  </section>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="main-wrap">
+    <!-- ===== PRIMARY CONTENT ===== -->
+    <main>
+      <!-- Section header -->
+      <div class="section-header">
+        <h2 class="section-title">Những Ngày Đáng <span>Nhớ</span></h2>
+        <a href="timeline.html" class="section-link">
+          Xem tất cả
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Post 1 -->
+      <article class="post-card fade-in" id="post-card-1">
+        <div class="post-thumb">
+          <img src="images/my_img/Messenger_creation_1130B1DC-B985-4F92-9E05-5463272DEB76.jpg"
+            alt="Buổi hẹn hò đầu tiên - Tặng hoa và cơn mưa Hà Nội" loading="lazy">
+        </div>
+        <div class="post-body">
+          <span class="post-category">Hẹn Hò</span>
+          <h2 class="post-title">
+            <a href="post-1.html">28/8 — Ngày hẹn hò bão táp & Cơn Mưa Hà Nội</a>
+          </h2>
+          <p class="post-excerpt">
+            Hà Nội bất ngờ đổ mưa to. Anh dắt xe, đợi gần một tiếng mới đến chỗ em.
+            Kế hoạch ban đầu thay đổi vì trời mưa — nhưng cuối cùng lại tìm được chỗ
+            ấm áp hơn cả dự định: nhà hàng The Manor, rồi Highland Coffee bên ô cửa sổ mờ hơi nước.
+          </p>
+          <div class="post-meta">
+            <span class="author">Khắc Hùng</span>
+            <span class="separator">·</span>
+            <span>28 tháng 8, 2026</span>
+            <span class="separator">·</span>
+            <span>4 phút đọc</span>
+            <button class="post-love" id="love-post1" onclick="toggleLove('love-post1', 'count-post1')">
+              <span class="heart">🤍</span>
+              <span id="count-post1">24</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post-card fade-in" id="post-card-2">
+        <div class="post-thumb">
+          <img src="images/my_img/Messenger_creation_9E3BF9E6-884C-4552-AE34-90908CFF3440.jpg"
+            alt="Lần đầu nắm tay - Chuyến đi Bắc Ninh" loading="lazy">
+        </div>
+        <div class="post-body">
+          <span class="post-category">Khoảnh Khắc</span>
+          <h2 class="post-title">
+            <a href="post-2.html">31/8 — Lần Đầu Nắm Tay Trên Đường Đến Bắc Ninh</a>
+          </h2>
+          <p class="post-excerpt">
+            Buổi sáng anh đến đón em. Cả hai đi xe máy, gió thổi nhẹ,
+            lòng anh đã có ý định từ trước. Rồi khoảnh khắc ấy đến —
+            trên con đường đến Vincom Bắc Ninh, anh khẽ chìa tay ra...
+            và em đã nắm lấy.
+          </p>
+          <div class="post-meta">
+            <span class="author">Khắc Hùng</span>
+            <span class="separator">·</span>
+            <span>31 tháng 8, 2026</span>
+            <span class="separator">·</span>
+            <span>5 phút đọc</span>
+            <button class="post-love" id="love-post2" onclick="toggleLove('love-post2', 'count-post2')">
+              <span class="heart">🤍</span>
+              <span id="count-post2">37</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Divider with script text -->
+      <div style="text-align:center; margin: 48px 0 40px; opacity: 0.5;">
+        <span style="font-family: var(--font-script); font-size: 1.8rem; color: var(--color-primary);">
+          — Những Ký Ức Khác —
+        </span>
+      </div>
+
+      <!-- Grid posts (older entries - handwritten notes) -->
+      <div class="section-header">
+        <h2 class="section-title">Nhật Ký <span>Tháng 7</span></h2>
+      </div>
+
+      <div class="posts-grid">
+        <article class="post-card-v fade-in">
+          <div class="post-thumb">
+            <img src="images/my_img/20260719_145312.jpg" alt="Kỷ niệm tháng 7 - Bảo tàng quân sự" loading="lazy">
+          </div>
+          <div class="post-body">
+            <span class="post-category">Tháng 7</span>
+            <h3 class="post-title">
+              <a href="timeline.html">30/7 — Những Trang Ghi Chú Đầu Tiên</a>
+            </h3>
+            <p class="post-excerpt" style="font-size: 13.5px;">
+              Tám trang nhật ký viết tay trong một buổi chiều — mỗi trang là một cảm xúc khác nhau khi nghĩ về em.
+            </p>
+            <div class="post-meta" style="margin-top: auto;">
+              <span>30 tháng 7, 2026</span>
+              <button class="post-love" onclick="toggleLove(this)">
+                <span class="heart">🤍</span>
+                <span>12</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="post-card-v fade-in">
+          <div class="post-thumb">
+            <img src="images/my_img/20260828_203343.jpg" alt="Tháng 8 - Món quà KRIK" loading="lazy">
+          </div>
+          <div class="post-body">
+            <span class="post-category">Tháng 8</span>
+            <h3 class="post-title">
+              <a href="timeline.html">16/8 & 27/8 — Giữa Hai Buổi Hẹn</a>
+            </h3>
+            <p class="post-excerpt" style="font-size: 13.5px;">
+              Những ngày giữa các buổi hẹn hò — anh viết xuống cảm giác
+              mong chờ, nhớ nhung và những điều muốn nói với em.
+            </p>
+            <div class="post-meta" style="margin-top: auto;">
+              <span>16 – 27 tháng 8, 2026</span>
+              <button class="post-love" onclick="toggleLove(this)">
+                <span class="heart">🤍</span>
+                <span>19</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Timeline preview -->
+      <div class="section-header" style="margin-top: 56px;">
+        <h2 class="section-title">Hành Trình <span>Yêu</span></h2>
+        <a href="timeline.html" class="section-link">
+          Đọc thêm
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item" data-animate>
+          <div class="timeline-date">21 Tháng 6, 2026</div>
+          <div class="timeline-title">Lần Đầu Gặp Riêng</div>
+          <div class="timeline-text">Lần đầu tiên chỉ có hai đứa — anh không biết hôm đó sẽ là khởi đầu của tất cả.
+          </div>
+        </div>
+
+        <div class="timeline-item" data-animate>
+          <div class="timeline-date">15 Tháng 8, 2026</div>
+          <div class="timeline-title">Tỏ Tình 💗 — Chính Thức Hẹn Hò</div>
+          <div class="timeline-text">Ngày anh tỏ tình và em say yes. Với anh có lẽ đó là điều đặc biệt vì em là người
+            đầu tiên giúp anh bước sang giai đoạn yêu đương và hẹn hò.</div>
+        </div>
+
+        <div class="timeline-item" data-animate>
+          <div class="timeline-date">28 Tháng 8, 2026</div>
+          <div class="timeline-title">Hẹn Hò Bão Táp — The Manor &amp; Highland</div>
+          <div class="timeline-text">Hà Nội đổ mưa, kế hoạch đổ bể — nhưng The Manor và Highland Handisco lại tạo ra
+            buổi tối không thể quên.</div>
+        </div>
+
+        <div class="timeline-item" data-animate>
+          <div class="timeline-date">31 Tháng 8, 2026</div>
+          <div class="timeline-title">Lần Đầu Nắm Tay — Spider-Man Ở Bắc Ninh</div>
+          <div class="timeline-text">Chuyến đi Vincom Bắc Ninh, xem Spider-Man — và lần đầu tiên anh dám chìa tay ra. Em
+            đã nắm lấy.</div>
+        </div>
+
+        <div class="timeline-item" data-animate>
+          <div class="timeline-date">7 Tháng 10, 2026</div>
+          <div class="timeline-title">Royal City — Ăn Lẩu Thái</div>
+          <div class="timeline-text">Hẹn ở Royal City, ăn lẩu Thái — ánh đèn đỏ, hai đứa ngồi đối diện
+            nhau.</div>
+        </div>
+      </div>
+
+      <!-- Photo Gallery Section -->
+      <div id="gallery" style="margin-top: 56px;">
+        <div class="section-header">
+          <h2 class="section-title">Kỷ Niệm <span>Ảnh Chụp</span></h2>
+        </div>
+        <div class="photo-gallery">
+          <div class="gallery-item gallery-featured">
+            <img src="images/my_img/5fc39645-04e8-4a39-8fbf-ee2d58a68245.jfif"
+              alt="Hoàng hôn trên xe máy — đường về 31/8" loading="lazy">
+            <div class="gallery-overlay"><span>Hoàng hôn đường về Bắc Ninh 🌅</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/my_img/17c5af3d-dde9-4450-a0ae-d3cd788fc4fc.jfif" alt="Naomi với bó hoa cẩm tú cầu"
+              loading="lazy">
+            <div class="gallery-overlay"><span>28/8 — Bó hoa đầu tiên 💐</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/my_img/880cf262-b387-46f9-913c-61d322df5853.jfif" alt="Selfie đôi tại bảo tàng quân sự"
+              loading="lazy">
+            <div class="gallery-overlay"><span>19/7 — Bảo tàng Quân sự ✈️</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/my_img/ec1717a0-f946-49b1-9149-aab484b470da.jfif" alt="Selfie đôi ngoài trời Bắc Ninh"
+              loading="lazy">
+            <div class="gallery-overlay"><span>31/8 — Chill ở quê 🌿</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/my_img/20261007_201718.jpg" alt="Gangnam Box 7/10" loading="lazy">
+            <div class="gallery-overlay"><span>7/10 — Royal City 🍲</span></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+
+      <!-- About widget -->
+      <div class="widget widget-about fade-in">
+        <div class="widget-title">Về Blog Này</div>
+        <div class="about-avatar"><img src="images/my_img/Messenger_creation_57E09303-7071-48E2-91A5-4BF32DFCF557.jpg"
+            alt="Ảnh đôi" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="about-name">Nhật Ký Tình Yêu</div>
+        <p class="about-bio">
+          Đây là nơi anh lưu giữ những khoảnh khắc với em — từ buổi hẹn đầu tiên,
+          những cơn mưa bất chợt, đến từng lần nắm tay.
+          Mỗi bài viết là một ký ức không muốn quên.
+        </p>
+      </div>
+
+      <!-- Love counter widget -->
+      <div class="widget fade-in">
+        <div class="widget-title">Tình Yêu</div>
+        <div class="love-counter">
+          <span class="big-heart">💕</span>
+          <div class="count-num" id="dayCounter">0</div>
+          <div class="count-label">Ngày Bên Nhau</div>
+        </div>
+      </div>
+
+      <!-- Recent posts widget -->
+      <div class="widget fade-in">
+        <div class="widget-title">Bài Gần Đây</div>
+
+        <div class="widget-post-item">
+          <div class="widget-post-thumb">
+            <img src="images/my_img/Messenger_creation_9E3BF9E6-884C-4552-AE34-90908CFF3440.jpg" alt="" loading="lazy">
+          </div>
+          <div class="widget-post-info">
+            <div class="widget-post-title">
+              <a href="post-2.html">Lần Đầu Nắm Tay Trên Đường Đến Bắc Ninh</a>
+            </div>
+            <div class="widget-post-date">31 tháng 8, 2026</div>
+          </div>
+        </div>
+
+        <div class="widget-post-item">
+          <div class="widget-post-thumb">
+            <img src="images/my_img/Messenger_creation_1130B1DC-B985-4F92-9E05-5463272DEB76.jpg" alt="" loading="lazy">
+          </div>
+          <div class="widget-post-info">
+            <div class="widget-post-title">
+              <a href="post-1.html">Ngày hẹn hò bão táp & Cơn Mưa Hà Nội</a>
+            </div>
+            <div class="widget-post-date">28 tháng 8, 2026</div>
+          </div>
+        </div>
+
+        <div class="widget-post-item">
+          <div class="widget-post-thumb">
+            <img src="images/my_img/20260719_145027.jpg" alt="" loading="lazy">
+          </div>
+          <div class="widget-post-info">
+            <div class="widget-post-title">
+              <a href="timeline.html">Những Trang Nhật Ký 30/7</a>
+            </div>
+            <div class="widget-post-date">30 tháng 7, 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags widget -->
+      <div class="widget fade-in">
+        <div class="widget-title">Chủ Đề</div>
+        <div class="tags-cloud">
+          <span class="tag">Hẹn Hò 💑</span>
+          <span class="tag">Hà Nội</span>
+          <span class="tag">Bắc Ninh</span>
+          <span class="tag">Kỷ Niệm</span>
+          <span class="tag">Bowling 🎳</span>
+          <span class="tag">Cà Phê ☕</span>
+          <span class="tag">Spider-Man 🕷️</span>
+          <span class="tag">Mưa 🌧️</span>
+          <span class="tag">Nắm Tay 🤝</span>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <span class="logo-name">Handess ♡ Naomi</span>
+        </div>
+        <p class="footer-tagline">
+          Nhật ký về những khoảnh khắc nhỏ bé<br>
+          mà anh sợ sẽ quên mất một ngày nào đó.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-heading">Câu Chuyện</div>
+        <div class="footer-links">
+          <a href="post-1.html">28/8 — Buổi Hẹn Đầu Tiên</a>
+          <a href="post-2.html">31/8 — Lần Đầu Nắm Tay</a>
+          <a href="timeline.html">Hành Trình Tình Yêu</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Kết Nối</div>
+        <div class="footer-links">
+          <a href="#">Tháng 7, 2026</a>
+          <a href="#">Tháng 8, 2026</a>
+          <a href="#">Tháng 9, 2026</a>
+        </div>
       </div>
     </div>
 
-    <div>
-      <div class="footer-heading">Kết Nối</div>
-      <div class="footer-links">
-        <a href="#">Tháng 7, 2026</a>
-        <a href="#">Tháng 8, 2026</a>
-        <a href="#">Tháng 9, 2026</a>
-      </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nhật Ký Tình Yêu — Dành tặng em 🌸</span>
+      <span>Làm với <span class="heart">❤️</span> bởi Anh</span>
     </div>
-  </div>
+  </footer>
 
-  <div class="footer-bottom">
-    <span>© 2026 Nhật Ký Tình Yêu — Dành tặng em 🌸</span>
-    <span>Làm với <span class="heart">❤️</span> bởi Anh</span>
-  </div>
-</footer>
+  <!-- ========== BACK TO TOP ========== -->
+  <button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">↑</button>
 
-<!-- ========== BACK TO TOP ========== -->
-<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">↑</button>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
