@@ -30,9 +30,19 @@
       text-align: center;
       padding: 24px;
     }
-    .photo-placeholder .ph-icon { font-size: 2.4rem; }
-    .photo-placeholder .ph-label { font-weight: 600; }
-    .photo-placeholder .ph-hint { font-size: 12px; color: var(--color-text-muted); }
+
+    .photo-placeholder .ph-icon {
+      font-size: 2.4rem;
+    }
+
+    .photo-placeholder .ph-label {
+      font-weight: 600;
+    }
+
+    .photo-placeholder .ph-hint {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
 
     /* ── Location pin chips ── */
     .location-chips {
@@ -41,6 +51,7 @@
       gap: 8px;
       margin: 20px 0 28px;
     }
+
     .chip {
       display: inline-flex;
       align-items: center;
@@ -61,6 +72,7 @@
       gap: 12px;
       margin: 28px 0;
     }
+
     .story-photo-grid img,
     .story-photo-grid .photo-placeholder {
       border-radius: 10px;
@@ -68,16 +80,28 @@
       height: 220px;
       object-fit: cover;
     }
-    .story-photo-grid .photo-placeholder { min-height: 220px; }
+
+    .story-photo-grid .photo-placeholder {
+      min-height: 220px;
+    }
+
     .story-photo-grid .span-2 {
       grid-column: span 2;
       height: 320px;
     }
-    .story-photo-grid .span-2.photo-placeholder { min-height: 320px; }
+
+    .story-photo-grid .span-2.photo-placeholder {
+      min-height: 320px;
+    }
 
     @media (max-width: 600px) {
-      .story-photo-grid { grid-template-columns: 1fr; }
-      .story-photo-grid .span-2 { grid-column: span 1; }
+      .story-photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-photo-grid .span-2 {
+        grid-column: span 1;
+      }
     }
 
     /* ── Section divider with icon ── */
@@ -87,6 +111,7 @@
       gap: 12px;
       margin: 36px 0 20px;
     }
+
     .section-divider::before,
     .section-divider::after {
       content: '';
@@ -94,6 +119,7 @@
       height: 1px;
       background: var(--color-border);
     }
+
     .section-divider span {
       font-size: 1.1rem;
       white-space: nowrap;
@@ -166,8 +192,7 @@
       </div>
 
       <!-- Hero image -->
-      <img src="images/autumn_hanoi.png"
-        alt="Mùa thu Hà Nội — Hồ Tây buổi sáng" class="post-hero-img">
+      <img src="images/autumn_hanoi.HEIC" alt="Mùa thu Hà Nội — Hồ Tây buổi sáng" class="post-hero-img">
 
       <div class="post-content">
 
@@ -201,7 +226,8 @@
           <div class="photo-placeholder span-2">
             <span class="ph-icon">📸</span>
             <span class="ph-label">Ảnh Hồ Tây — 25/10</span>
-            <span class="ph-hint">Thêm ảnh từ Google Drive vào <code>images/my_img/oct25/</code><br>rồi thay thế placeholder này</span>
+            <span class="ph-hint">Thêm ảnh từ Google Drive vào <code>images/my_img/oct25/</code><br>rồi thay thế
+              placeholder này</span>
           </div>
         </div>
 
@@ -263,7 +289,8 @@
           <div class="photo-placeholder span-2">
             <span class="ph-icon">🏛️</span>
             <span class="ph-label">Nhà Tù Hỏa Lò — 25/10</span>
-            <span class="ph-hint">Những bức ảnh cute tại Hỏa Lò<br>Thêm từ Drive vào <code>images/my_img/oct25/</code></span>
+            <span class="ph-hint">Những bức ảnh cute tại Hỏa Lò<br>Thêm từ Drive vào
+              <code>images/my_img/oct25/</code></span>
           </div>
         </div>
 
@@ -318,12 +345,12 @@
         </p>
 
         <!-- Add photos note -->
-        <div class="highlight-box" style="background: linear-gradient(135deg,#fff9f9,#ffeef0); border-left-color: var(--color-primary);">
+        <div class="highlight-box"
+          style="background: linear-gradient(135deg,#fff9f9,#ffeef0); border-left-color: var(--color-primary);">
           <p style="font-size: 13.5px; margin: 0;">
             📸 <strong>Ảnh ngày 25/10</strong> đang được cập nhật từ
-            <a href="https://drive.google.com/drive/folders/1Dyq1qyICWEor35SmPTPr1pg0QjdynY3C"
-               target="_blank" rel="noopener"
-               style="color: var(--color-primary); text-decoration: underline;">Google Drive</a>.
+            <a href="https://drive.google.com/drive/folders/1Dyq1qyICWEor35SmPTPr1pg0QjdynY3C" target="_blank"
+              rel="noopener" style="color: var(--color-primary); text-decoration: underline;">Google Drive</a>.
             Tải ảnh về và lưu vào thư mục <code>images/my_img/oct25/</code> để hiển thị đầy đủ.
           </p>
         </div>
