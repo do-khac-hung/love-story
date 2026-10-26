@@ -164,8 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===================== DAY COUNTER =====================
   const dayCounter = document.getElementById('dayCounter');
   if (dayCounter) {
-    // Start date: August 28, 2026 (first date)
-    const startDate = new Date('2026-08-28');
+    // Start date: August 15, 2026 (first date)
+    const startDate = new Date('2026-08-15');
     const today = new Date();
     const diffTime = Math.abs(today - startDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

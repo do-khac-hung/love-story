@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if (sessionStorage.getItem('naomi_auth') !== 'true') {
+      window.location.replace('login.html');
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="25/10 — Thu Hà Nội và cách bạn ấy mượn ngày chủ nhật của tôi. Hồ Tây mùa thu, Takeya, phố Phan Đình Phùng, Hỏa Lò và Phố Sách.">
+  <title>25/10 — Thu Hà Nội | Handess ♡ Naomi</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Photo placeholder when Drive images not yet downloaded ── */
+    .photo-placeholder {
+      background: linear-gradient(135deg, #fdf4f5, #fce8ea);
+      border: 2px dashed var(--color-primary);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 240px;
+      color: var(--color-primary);
+      font-size: 14px;
+      text-align: center;
+      padding: 24px;
+    }
+    .photo-placeholder .ph-icon { font-size: 2.4rem; }
+    .photo-placeholder .ph-label { font-weight: 600; }
+    .photo-placeholder .ph-hint { font-size: 12px; color: var(--color-text-muted); }
+
+    /* ── Location pin chips ── */
+    .location-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0 28px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12.5px;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    /* ── Photo grid for story ── */
+    .story-photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .story-photo-grid img,
+    .story-photo-grid .photo-placeholder {
+      border-radius: 10px;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .story-photo-grid .photo-placeholder { min-height: 220px; }
+    .story-photo-grid .span-2 {
+      grid-column: span 2;
+      height: 320px;
+    }
+    .story-photo-grid .span-2.photo-placeholder { min-height: 320px; }
+
+    @media (max-width: 600px) {
+      .story-photo-grid { grid-template-columns: 1fr; }
+      .story-photo-grid .span-2 { grid-column: span 1; }
+    }
+
+    /* ── Section divider with icon ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 36px 0 20px;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .section-divider span {
+      font-size: 1.1rem;
+      white-space: nowrap;
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">
+        <span class="logo-name">Handess ♡ Naomi</span>
+        <span class="logo-tagline">Nhật ký tình yêu</span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Trang Chủ</a>
+        <a href="timeline.html">Hành Trình</a>
+        <a href="post-3.html" class="active">Câu Chuyện</a>
+      </nav>
+      <button class="hamburger" id="hamburgerBtn">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect y="3" width="22" height="2" rx="1" fill="currentColor" />
+          <rect y="10" width="22" height="2" rx="1" fill="currentColor" />
+          <rect y="17" width="22" height="2" rx="1" fill="currentColor" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Trang Chủ</a>
+    <a href="timeline.html">Hành Trình</a>
+    <a href="post-3.html">Câu Chuyện</a>
+  </nav>
+
+  <!-- POST CONTENT -->
+  <div class="post-single-wrap" style="margin-top: 68px;">
+    <article class="post-single-content">
+
+      <div class="post-header">
+        <span class="post-category">Hành Trình · Mùa Thu Hà Nội</span>
+
+        <h1>25/10 — Thu Hà Nội và<br><em>Cách Bạn Ấy Mượn Ngày Chủ Nhật Của Tôi</em></h1>
+
+        <div class="post-meta">
+          <span class="author">Anh viết</span>
+          <span class="separator">·</span>
+          <span>25 tháng 10, 2026</span>
+          <span class="separator">·</span>
+          <span>6 phút đọc</span>
+          <button class="post-love" id="love-p3" onclick="toggleLovePost('love-p3', 'cnt-p3')">
+            <span class="heart">🤍</span>
+            <span id="cnt-p3">0</span>
+          </button>
+        </div>
+
+        <!-- Location chips -->
+        <div class="location-chips">
+          <span class="chip">📍 Hồ Tây</span>
+          <span class="chip">🍱 Takeya · Ba Đình</span>
+          <span class="chip">🌿 Phan Đình Phùng</span>
+          <span class="chip">🏛️ Nhà Tù Hỏa Lò</span>
+          <span class="chip">📚 Phố Sách</span>
+        </div>
+      </div>
+
+      <!-- Hero image -->
+      <img src="images/autumn_hanoi.png"
+        alt="Mùa thu Hà Nội — Hồ Tây buổi sáng" class="post-hero-img">
+
+      <div class="post-content">
+
+        <p>
+          Có những ngày chủ nhật mà em — không hỏi, không xin — chỉ đơn giản là
+          <em>mượn</em> mất. Đó là cách anh định nghĩa ngày 25 tháng 10, một ngày
+          mùa thu Hà Nội hiếm có: không nắng gắt, không mưa, chỉ có bầu trời xám
+          nhẹ và không khí mát dịu đủ để hai đứa thả hồn lang thang cả ngày.
+        </p>
+
+        <p>
+          Anh từ Bắc Giang xuống, ghé rửa xe gần cổng chỗ em — vì nghĩ em bận,
+          tiện tay làm luôn. Rồi đón em ra. Và chuyến hành trình bắt đầu.
+        </p>
+
+        <!-- Section: Hồ Tây -->
+        <div class="section-divider"><span>🌊 Hồ Tây Buổi Sáng</span></div>
+
+        <h2>Hồ Tây — Hóng Mát Và Những Tấm Ảnh Chung</h2>
+        <p>
+          Hai đứa vi vu bằng xe máy lên Hồ Tây hóng mát, uống nước.
+          Buổi sáng mùa thu Hà Nội đẹp nhất là lúc đó — ánh sáng dịu, gió
+          từ mặt hồ thổi vào, cây hai bên đường bắt đầu ngả vàng.
+          Và có những tấm ảnh chung mà anh rất thích.
+        </p>
+
+        <!-- Photo grid: Hồ Tây photos -->
+        <div class="story-photo-grid">
+          <!-- Replace these placeholders with photos from Drive folder when downloaded -->
+          <!-- Save photos to: images/my_img/oct25/ then update src below -->
+          <div class="photo-placeholder span-2">
+            <span class="ph-icon">📸</span>
+            <span class="ph-label">Ảnh Hồ Tây — 25/10</span>
+            <span class="ph-hint">Thêm ảnh từ Google Drive vào <code>images/my_img/oct25/</code><br>rồi thay thế placeholder này</span>
+          </div>
+        </div>
+
+        <!-- Section: Takeya -->
+        <div class="section-divider"><span>🍱 Ăn Trưa</span></div>
+
+        <h2>Takeya · Ba Đình — Bữa Trưa Đồ Nhật</h2>
+        <p>
+          Tầm 11 giờ, hai đứa di chuyển ra quán Takeya gần Ba Đình ăn trưa.
+          Đồ Nhật, không gian yên tĩnh, hai đứa ngồi đối diện nhau và nói chuyện
+          không ngừng. Một trong những bữa trưa anh thấy bình yên nhất.
+        </p>
+
+        <blockquote>
+          "Có những bữa ăn không cần đặc biệt — chỉ cần có người ngồi đối diện
+          đúng người là đủ."
+        </blockquote>
+
+        <!-- Section: Phố phường -->
+        <div class="section-divider"><span>🌿 Phố Phường</span></div>
+
+        <h2>Phan Đình Phùng — Uống Nước, Ngắm Phố</h2>
+        <p>
+          Sau bữa trưa, hai đứa phóng ra Phan Đình Phùng uống nước ngắm phố phường —
+          một trong những con phố đẹp nhất Hà Nội vào mùa thu, hàng cây
+          xanh mướt phủ kín hai bên đường.
+          Nghỉ ngơi một chút, ngồi nhìn người ta qua lại, và nói chuyện
+          không chủ đề.
+        </p>
+
+        <!-- Photo grid: Phố -->
+        <div class="story-photo-grid">
+          <div class="photo-placeholder">
+            <span class="ph-icon">🌿</span>
+            <span class="ph-label">Phan Đình Phùng</span>
+            <span class="ph-hint">Ảnh từ Drive</span>
+          </div>
+          <div class="photo-placeholder">
+            <span class="ph-icon">☕</span>
+            <span class="ph-label">Uống nước, ngắm phố</span>
+            <span class="ph-hint">Ảnh từ Drive</span>
+          </div>
+        </div>
+
+        <!-- Section: Hỏa Lò -->
+        <div class="section-divider"><span>🏛️ Hỏa Lò</span></div>
+
+        <h2>Nhà Tù Hỏa Lò — Nơi Hai Đứa Đi Qua Nhiều Nhưng Chưa Từng Vào</h2>
+        <p>
+          Còn sớm nên hai đứa quyết định ghé thăm nhà tù Hỏa Lò — một địa điểm
+          cả hai đi qua nhiều lần nhưng chưa từng bước vào.
+          Bên trong là cả một thế giới khác — lịch sử, chiến tranh, và sức mạnh
+          con người. Hai đứa đi chậm, đọc từng tấm bảng, và có những bức ảnh
+          <em>cute</em> cùng nhau mà anh rất thích.
+        </p>
+
+        <!-- Photo grid: Hỏa Lò -->
+        <div class="story-photo-grid">
+          <div class="photo-placeholder span-2">
+            <span class="ph-icon">🏛️</span>
+            <span class="ph-label">Nhà Tù Hỏa Lò — 25/10</span>
+            <span class="ph-hint">Những bức ảnh cute tại Hỏa Lò<br>Thêm từ Drive vào <code>images/my_img/oct25/</code></span>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <p>Những nơi chứa đựng lịch sử bao giờ cũng làm anh thấy trân trọng hiện tại hơn —
+            và buổi hôm đó, hiện tại của anh là em đứng bên cạnh.</p>
+        </div>
+
+        <!-- Section: Phố Sách -->
+        <div class="section-divider"><span>📚 Phố Sách</span></div>
+
+        <h2>Phố Sách — Khám Phá Bất Ngờ</h2>
+        <p>
+          Vì còn sớm, hai đứa dạo bước thêm và khám phá được Phố Sách gần đó —
+          một địa điểm nữa mà cả hai chưa từng ghé.
+          Đi giữa những hàng sách, ngắm bìa sách, thỉnh thoảng nhặt lên đọc thử,
+          và có nhiều ảnh đẹp ở đây mà anh nghĩ là đẹp nhất cả ngày.
+        </p>
+
+        <!-- Photo grid: Phố Sách -->
+        <div class="story-photo-grid">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📚</span>
+            <span class="ph-label">Phố Sách</span>
+            <span class="ph-hint">Ảnh từ Drive</span>
+          </div>
+          <div class="photo-placeholder">
+            <span class="ph-icon">📖</span>
+            <span class="ph-label">Giữa những hàng sách</span>
+            <span class="ph-hint">Ảnh từ Drive</span>
+          </div>
+        </div>
+
+        <blockquote>
+          "Một ngày không cần kế hoạch hoàn hảo — chỉ cần có em, có hai đứa cùng khám phá,
+          mọi thứ đều trở thành kỷ niệm."
+          <cite>— 25/10/2026</cite>
+        </blockquote>
+
+        <!-- Closing -->
+        <div class="section-divider"><span>🍂 Kết Ngày</span></div>
+
+        <p>
+          Anh đưa em về khi buổi chiều bắt đầu tối. Một ngày đi nhiều hơn dự định,
+          khám phá được nhiều hơn kế hoạch, và về nhà với đầy ắp những tấm ảnh
+          và kỷ niệm mới.
+        </p>
+
+        <p>
+          Đó là cách em <em>mượn</em> ngày chủ nhật của anh — không hỏi, không báo,
+          chỉ đơn giản là đến, và khiến anh không muốn nó kết thúc.
+        </p>
+
+        <!-- Add photos note -->
+        <div class="highlight-box" style="background: linear-gradient(135deg,#fff9f9,#ffeef0); border-left-color: var(--color-primary);">
+          <p style="font-size: 13.5px; margin: 0;">
+            📸 <strong>Ảnh ngày 25/10</strong> đang được cập nhật từ
+            <a href="https://drive.google.com/drive/folders/1Dyq1qyICWEor35SmPTPr1pg0QjdynY3C"
+               target="_blank" rel="noopener"
+               style="color: var(--color-primary); text-decoration: underline;">Google Drive</a>.
+            Tải ảnh về và lưu vào thư mục <code>images/my_img/oct25/</code> để hiển thị đầy đủ.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Love & Share -->
+      <div
+        style="display:flex; align-items:center; gap: 20px; flex-wrap: wrap; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--color-border);">
+        <button class="post-love-btn" id="loveBtnPost3" onclick="toggleLoveMain('loveBtnPost3')">
+          <span class="heart-icon">🤍</span>
+          <span>Yêu thích bài viết này</span>
+        </button>
+
+        <div class="post-share">
+          <span class="share-label">Chia sẻ</span>
+          <button class="share-btn" title="Copy link" onclick="navigator.clipboard.writeText(location.href)">🔗</button>
+          <button class="share-btn">f</button>
+          <button class="share-btn">𝕏</button>
+        </div>
+      </div>
+
+      <!-- Post Navigation -->
+      <nav class="post-nav">
+        <a href="post-2.html" class="post-nav-item prev" style="display:block;">
+          <div class="post-nav-label">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M10 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            Bài Trước
+          </div>
+          <div class="post-nav-title">31/8 — Lần Đầu Nắm Tay</div>
+        </a>
+
+        <a href="timeline.html" class="post-nav-item next" style="display:block;">
+          <div class="post-nav-label">
+            Xem Thêm
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M4 7h8M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="post-nav-title">Hành Trình Tình Yêu — Dòng Thời Gian</div>
+        </a>
+      </nav>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" style="margin-top: 0;">
+
+      <div class="widget">
+        <div class="widget-title">Về Ngày Hôm Đó</div>
+        <div style="font-size: 13.5px; color: var(--color-text-muted); line-height: 1.7;">
+          <p style="margin-bottom: 12px;">📅 25 tháng 10, 2026</p>
+          <p style="margin-bottom: 12px;">🍂 Thời tiết mùa thu, mát mẻ</p>
+          <p style="margin-bottom: 12px;">🌊 Hồ Tây — hóng mát & ảnh đẹp</p>
+          <p style="margin-bottom: 12px;">🍱 Takeya — ăn trưa đồ Nhật</p>
+          <p style="margin-bottom: 12px;">🌿 Phan Đình Phùng — ngắm phố</p>
+          <p style="margin-bottom: 12px;">🏛️ Nhà Tù Hỏa Lò — khám phá</p>
+          <p style="margin-bottom: 0;">📚 Phố Sách — ảnh đẹp nhất ngày</p>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">Câu Chuyện Khác</div>
+
+        <div class="widget-post-item">
+          <div class="widget-post-thumb">
+            <img src="images/my_img/Messenger_creation_1130B1DC-B985-4F92-9E05-5463272DEB76.jpg" alt="" loading="lazy">
+          </div>
+          <div class="widget-post-info">
+            <div class="widget-post-title">
+              <a href="post-1.html">28/8 — Bowling & Cơn Mưa Hà Nội</a>
+            </div>
+            <div class="widget-post-date">28 tháng 8, 2026</div>
+          </div>
+        </div>
+
+        <div class="widget-post-item">
+          <div class="widget-post-thumb">
+            <img src="images/my_img/5fc39645-04e8-4a39-8fbf-ee2d58a68245.jfif" alt="" loading="lazy">
+          </div>
+          <div class="widget-post-info">
+            <div class="widget-post-title">
+              <a href="post-2.html">31/8 — Lần Đầu Nắm Tay</a>
+            </div>
+            <div class="widget-post-date">31 tháng 8, 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">Chủ Đề</div>
+        <div class="tags-cloud">
+          <span class="tag">Mùa Thu 🍂</span>
+          <span class="tag">Hồ Tây 🌊</span>
+          <span class="tag">Hà Nội</span>
+          <span class="tag">Hỏa Lò 🏛️</span>
+          <span class="tag">Phố Sách 📚</span>
+          <span class="tag">Đồ Nhật 🍱</span>
+          <span class="tag">Xe Máy 🏍️</span>
+          <span class="tag">Kỷ Niệm 💌</span>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><span class="logo-name">Handess ♡ Naomi</span></div>
+        <p class="footer-tagline">Nhật ký về những khoảnh khắc nhỏ bé mà anh sợ sẽ quên.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Câu Chuyện</div>
+        <div class="footer-links">
+          <a href="post-1.html">28/8 — Buổi Hẹn Đầu Tiên</a>
+          <a href="post-2.html">31/8 — Lần Đầu Nắm Tay</a>
+          <a href="post-3.html">25/10 — Thu Hà Nội</a>
+          <a href="timeline.html">Hành Trình Tình Yêu</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Khám Phá</div>
+        <div class="footer-links">
+          <a href="index.html">Trang Chủ</a>
+          <a href="timeline.html">Dòng Thời Gian</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nhật Ký Tình Yêu</span>
+      <span>Làm với <span class="heart">❤️</span> bởi Anh</span>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
