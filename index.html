@@ -186,12 +186,12 @@
       <!-- Post 3 -->
       <article class="post-card fade-in" id="post-card-3">
         <div class="post-thumb">
-          <img src="images/autumn_hanoi.HEIC" alt="Thu Hà Nội - Hồ Tây mùa thu, ngày chủ nhật bị mượn" loading="lazy">
+          <img src="images/my_img/oct25/IMG_0971.jpg" alt="Thu Hà Nội - Hồ Tây mùa thu, ngày chủ nhật bị mượn" loading="lazy">
         </div>
         <div class="post-body">
           <span class="post-category">Mùa Thu · Hà Nội</span>
           <h2 class="post-title">
-            <a href="post-3.html">25/10 — Thu Hà Nội &amp; Cách Bạn Ấy Mượn Ngày Chủ Nhật</a>
+            <a href="post-3.html">25/10 — Thu Hà Nội — Cách Bạn Ấy Mượn Ngày Chủ Nhật Của Tôi</a>
           </h2>
           <p class="post-excerpt">
             Một ngày thu mát mẻ — anh đón em, vi vu Hồ Tây, ăn trưa Takeya,
@@ -317,6 +317,13 @@
           <div class="timeline-title">Royal City — Ăn Lẩu Thái</div>
           <div class="timeline-text">Hẹn ở Royal City, ăn lẩu Thái — ánh đèn đỏ, hai đứa ngồi đối diện
             nhau.</div>
+        </div>
+
+        <div class="timeline-item" data-animate>
+          <div class="timeline-date">25 Tháng 10, 2026</div>
+          <div class="timeline-title">Thu Hà Nội — Cách Bạn Ấy Mượn Ngày Chủ Nhật Của Tôi</div>
+          <div class="timeline-text">Một ngày thu mát mẻ, anh đón em vi vu Hồ Tây, Takeya, Phan Đình Phùng,
+            Hỏa Lò rồi Phố Sách — một ngày chủ nhật bị mượn, không tiếc một giây.</div>
         </div>
       </div>
 
@@ -484,10 +491,86 @@
     </div>
   </footer>
 
+  <!-- ========== FLOATING VIDEO WIDGET (LEFT CORNER) ========== -->
+  <div class="floating-video-widget" id="floatingVideoWidget">
+    <button class="floating-video-mini-btn" id="floatingVideoExpandBtn" title="Mở video" aria-label="Mở video">
+      🎥
+    </button>
+    <div class="floating-video-header">
+      <span class="floating-video-title">
+        <span class="live-dot"></span>
+        Khoảnh khắc
+      </span>
+      <div class="floating-video-controls">
+        <button class="floating-video-btn" id="floatingVideoMuteBtn" title="Bật/Tắt âm thanh" aria-label="Mute toggle">
+          🔇
+        </button>
+        <button class="floating-video-btn" id="floatingVideoMinBtn" title="Thu nhỏ" aria-label="Thu nhỏ">
+          ─
+        </button>
+      </div>
+    </div>
+    <div class="floating-video-body" id="floatingVideoBody" title="Nhấn để tạm dừng / phát">
+      <video id="floatingVideoEl" autoplay loop muted playsinline preload="metadata">
+        <source src="images/my_img/output.mp4" type="video/mp4">
+        Trình duyệt không hỗ trợ video.
+      </video>
+    </div>
+  </div>
+
   <!-- ========== BACK TO TOP ========== -->
   <button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">↑</button>
 
   <script src="script.js"></script>
+  <script>
+    // Floating video interactions
+    (function () {
+      const widget = document.getElementById('floatingVideoWidget');
+      const video = document.getElementById('floatingVideoEl');
+      const muteBtn = document.getElementById('floatingVideoMuteBtn');
+      const minBtn = document.getElementById('floatingVideoMinBtn');
+      const expandBtn = document.getElementById('floatingVideoExpandBtn');
+      const body = document.getElementById('floatingVideoBody');
+
+      if (!widget || !video) return;
+
+      // Toggle Mute
+      if (muteBtn) {
+        muteBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          video.muted = !video.muted;
+          muteBtn.textContent = video.muted ? '🔇' : '🔊';
+        });
+      }
+
+      // Minimize
+      if (minBtn) {
+        minBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          widget.classList.add('minimized');
+        });
+      }
+
+      // Expand
+      if (expandBtn) {
+        expandBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          widget.classList.remove('minimized');
+        });
+      }
+
+      // Click video to pause/play
+      if (body) {
+        body.addEventListener('click', function () {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 
 </html>
